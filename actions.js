@@ -46,10 +46,3 @@ const postDessert = (desObj) => {
 };
 
 module.exports = { gotDesserts, addDessert, fetchDesserts, postDessert };
-
-const getChefs = () => {
-  return async (dispatch) => {
-    const chefs = await axios.get("/api/chefs").data;
-    return dispatch(setChefs(chefs));
-  };
-};
