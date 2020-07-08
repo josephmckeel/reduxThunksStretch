@@ -12,16 +12,38 @@ const gotDesserts = (des) => {
   };
 };
 
-const addDessert = (des) => {
+const addDessert = (newDes) => {
   return {
     type: NEW_DESSERT_DATA,
     des,
   };
 };
 
-const fetchDesserts = () => {};
+const fetchDesserts = () => {
+  return (dispatch) => {
+    return axios
+      .get("/api/desserts")
+      .then((res) => {
+        res.data;
+      })
+      .then(({ desserts }) => {
+        return dispatch(gotDesserts(desserts));
+      });
+  };
+};
 
-const postDessert = () => {};
+const postDessert = (desObj) => {
+  return (dispatch) => {
+    return axios
+      .post("/api/desserts", desObj)
+      .then((res) => {
+        res.data;
+      })
+      .then(({ newDes }) => {
+        return dispatch(addDessert(newDes));
+      });
+  };
+};
 
 module.exports = { gotDesserts, addDessert, fetchDesserts, postDessert };
 
